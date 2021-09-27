@@ -21,7 +21,6 @@ def train_epoch(net, criterion, optimizer, dataset, epoch, routing_l1_regulariza
         optimizer.step()
         loss = loss.item()
         total_loss += loss
-    print("Epoch : {} \t Loss : {} ".format(epoch, round(loss,9)))
     return total_loss / i
 
 
@@ -107,7 +106,7 @@ def train(net,
                                  routing_l1_regularization=routing_l1_regularization)
         net.distort_prob = max(net.distort_prob - distort_prob_decay, 0)
         main_writer.add_scalar('train_loss', train_loss, epoch)
-
+        print("Epoch : {} \t Loss : {} ".format(epoch, round(train_loss,9)))
         # log_losses(net,
         #            criterion,
         #            main_writer,
