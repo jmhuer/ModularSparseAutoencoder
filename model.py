@@ -84,7 +84,7 @@ class Net(nn.Module):
     def batch_lifetime_sparsify_layer(self, x):  # Applied to a batch.
         avg_values = x.mean(0)
         threshold = avg_values.topk(self.num_active_neurons).values[-1]
-        mask = avg_values >= threshold * torch.ones(avg_values.shape)
+        mask = avg_values >= threshold * torch.ones(avg_values.shape).to(x.device)
         return mask * x
 
     def sparsify_stripes(self, x):
