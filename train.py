@@ -8,7 +8,7 @@ from torch.utils.tensorboard import SummaryWriter
 def train_epoch(net, criterion, optimizer, dataset, epoch, routing_l1_regularization=0):
     total_loss = 0
     for i, batch in enumerate(dataset): 
-        x_var = batch[:,0,0,:].to(net.device)
+        x_var = batch[0].to(net.device)
         x_var = x_var.to(net.device)
         net.to(net.device)
 
