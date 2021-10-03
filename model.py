@@ -29,10 +29,10 @@ class Net(nn.Module):
                  active_stripes_per_batch,
                  device):
         super(Net, self).__init__()
-        self.layer1 = nn.Linear(128, intermediate_dim)
+        self.layer1 = nn.Linear(88, intermediate_dim)
         self.layer2 = nn.Linear(intermediate_dim, stripe_dim * num_stripes)
         self.layer3 = nn.Linear(stripe_dim * num_stripes, intermediate_dim)
-        self.layer4 = nn.Linear(intermediate_dim, 128)
+        self.layer4 = nn.Linear(intermediate_dim, 88)
 
         self.stripe_dim = stripe_dim
         self.num_stripes = num_stripes
