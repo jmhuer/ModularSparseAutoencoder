@@ -123,7 +123,6 @@ class Net(nn.Module):
         if self.active_stripes_per_batch < 1:
             stripe_data = self.lifetime_sparsify_stripes(stripe_data)
         return stripe_data
-
     def decode(self, x):
         x = x.reshape(-1, self.num_stripes * self.stripe_dim)
         x = F.relu(self.layer3(x))
@@ -134,7 +133,10 @@ class Net(nn.Module):
         x = self.encode(x)
         x = self.decode(x)
         return x
-
+    def code(self, x):
+        x = self.encode(x)
+        x = x.reshape(-1, self.num_stripes * self.stripe_dim)
+        return x
     def get_active_stripes(self, x):
         code = self.encode(x).squeeze(0)
         zero_stripe = torch.zeros(self.stripe_dim).to(self.device)
